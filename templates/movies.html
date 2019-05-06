@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    {% for movie in moviesList %}
+
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="/home">Now Playing</a>
+                <small class="text-muted">{{ movie.length }}</small>
+            </div>
+            <h2><a class="article-title" href="/home">{{ movie.movieTitle }}</a></h2>
+            <p class="article-content">{{ movie.description }}</p>
+            </div>
+        </article>
+
+    {% endfor %}
+
+{% endblock content %}

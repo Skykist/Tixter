@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% for post in theaters %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="/home">{{ post.name }}</a>
+              <small class="text-muted">{{ post.phoneNbr }}</small>
+            </div>
+            <p class="article-content">{{ post.address }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

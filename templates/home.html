@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div>
+      <h1 align="center">Movies Playing in the East Bay</h1>
+    </div>
+    </br>
+
+    {% for showtime in showtimes %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              {% for movie in movies %}
+
+                {% if showtime.movieID == movie.movieID %}
+                  <a class="mr-2" href="#">{{ movie.movieTitle }}</a>
+                {% endif %}
+
+              {% endfor %}
+
+              {% for theater in theaters %}
+
+                {% if showtime.theaterID == theater.theaterID %}
+                  <small class="text-muted">{{ theater.name }}</small>
+                {% endif %}
+
+              {% endfor %}
+
+            </div>
+            <h2><a class="article-title" href="#">{{ showtime.showtime }}</a></h2>
+            <p class="article-content">${{ showtime.price }}0</p>
+            <p class="article-content">{{ showtime.date }}</p>
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}
