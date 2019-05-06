@@ -1,34 +1,32 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask import render_template
-
+from flask import Flask, render_template, url_for
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Cha12345@localhost:5433/tixterdb'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-class Movie(db.Model):
-    movieID = db.Column(db.Integer, primary_key=True)
-    movieTitle = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(500))
-    length = db.Column(db.String(30))
-
-    def __init__(self, title, description, length):
-        self.movieTitle = movieTitle
-        self.email = email
-        self.description = description
-        self.length = length
-    
-    def __repr__(self):
-        return '<Movie %r>' % self.movieTitle
+from model import *
 
 @app.route("/")
+@app.route("/home")
 def home():
-    return render_template('get_movie.html')
+    showtimes = Showtime.query.join(Movie,Movie.movieID == Showtime.movieID).order_by(Showtime.price,Showtime.showtime).all()
+    movies = Movie.query.all()
+    theaters = Theater.query.all()
+    return render_template('home.html',showtimes=showtimes, movies=movies, theaters=theaters)
 
-@app.route('/get_movie')
-def get_movie():
-    return True
+@app.route("/movies")
+def getMovies():
+    moviesList = Movie.query.all()
+    return render_template('movies.html',title='Now Playing', moviesList=moviesList)
+
+@app.route("/theaters")
+def getTheaters():
+    theaters = Theater.query.all()
+    return render_template('theaters.html',title='Theaters',theaters=theaters)
+
+@app.route("/about")
+def about():
+    return render_template('about.html',title='About')
+
+@app.route("/help")
+def help():
+    return render_template('help.html',title='Help')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)  
