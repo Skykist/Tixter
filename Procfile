@@ -1,1 +1,1 @@
-web: gunicorn deploy:tixter
+web: gunicorn app:tixter
