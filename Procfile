@@ -1,1 +1,1 @@
-web: gunicorn deploy:tixter.py
+web: gunicorn deploy:tixter
