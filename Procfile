@@ -1,0 +1,1 @@
+web: gunicorn deploy:tixter.py
