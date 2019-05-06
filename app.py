@@ -29,4 +29,4 @@ def help():
     return render_template('help.html',title='Help')
 
 if __name__ == "__main__":
-    app.run(debug=True)  
+    app.run()  
