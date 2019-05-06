@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Cha12345@localhost:5433/tixterdb'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Cha12345@localhost:5433/tixterdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rxcoocabwqxkny:f2437d9fa13163136acf06b7a31f31f9843962af3d34742d886fad789911fd03@ec2-54-225-116-36.compute-1.amazonaws.com:5432/dal2c5gdmpse1'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
